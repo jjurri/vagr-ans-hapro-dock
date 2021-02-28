@@ -1,0 +1,47 @@
+---
+- name: Install HAProxy
+  hosts: proxy
+  become: yes
+
+  tasks:
+  - name: Install HAProxy
+    apt: name=haproxy state=latest
+
+  - name: Start HAProxy and enable it on boot
+    service: name=haproxy state=started enabled=yes
+
+  - name: copy the HAProxy config file
+    copy:
+      remote_src: yes
+      src: /vagrant/haproxy.cfg
+      dest: /etc/haproxy/haproxy.cfg
+    
+  - name: restart HAProxy
+    service:
+      name: haproxy
+      state: restarted
+
+# test install docker
+
+- name: Install Docker
+  hosts: server2
+  become: yes
+  vars_files:
+    - vars.yml
+  tasks:
+
+  - name: Install Docker Module for Python
+    pip:
+        name: docker
+
+  - name: Pull Docker image
+    docker_image:
+       name: "{{ container_image }}"
+       source: pull
+
+  - name: Run container
+    docker_container:
+       name: "{{ container_name }}"
+       image: "{{ container_image }}"
+       command: "{{ container_command }}"
+       state: started
