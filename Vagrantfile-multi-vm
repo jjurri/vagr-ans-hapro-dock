@@ -1,0 +1,31 @@
+# Start with command: vagrant up --provision
+Vagrant.configure("2") do |config|
+  config.vm.provider :virtualbox do |v|
+    v.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"] # solving issue: freeze at ssh auth method private key
+    v.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL] # solving issue: freeze at ssh auth method private key
+    v.customize [
+      "modifyvm", :id,
+      "--memory", 512,
+      "--cpus", 1,
+      ]
+  end
+  config.vm.define "test1" do |test1|
+    test1.vm.box = "ubuntu/focal64"
+    test1.vm.network "private_network", ip: "192.168.111.11"
+  end
+
+  config.vm.define "test2" do |test2|
+    test2.vm.box = "ubuntu/focal64"
+    test2.vm.network "private_network", ip: "192.168.111.12"
+  end
+
+  config.vm.define "test3" do |test3|
+    test3.vm.box = "ubuntu/focal64"
+    test3.vm.network "private_network", ip: "192.168.111.13"
+  end
+
+  config.vm.define "test4" do |test4|
+    test4.vm.box = "ubuntu/focal64"
+    test4.vm.network "private_network", ip: "192.168.111.14"
+  end
+end
