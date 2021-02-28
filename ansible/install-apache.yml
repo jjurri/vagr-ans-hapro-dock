@@ -1,0 +1,11 @@
+---
+- name: Install Apache
+  hosts: test1
+  become: yes
+
+  tasks:
+  - name: Install Apache
+    apt: name=apache2 state=latest
+
+  - name: Start Apache and enable it on boot
+    service: name=apache2 state=started enabled=yes

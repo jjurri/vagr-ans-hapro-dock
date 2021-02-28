@@ -1,0 +1,4 @@
+ test1 ansible_host=127.0.0.1:2222 ansible_user=vagrant ansible_pass=vagrant
+ test2 ansible_host=192.168.111.12 ansible_user=vagrant ansible_pass=vagrant
+ test3 ansible_host=192.168.111.13 ansible_user=vagrant ansible_pass=vagrant
+ test4 ansible_host=192.168.111.14 ansible_user=vagrant ansible_pass=vagrant
