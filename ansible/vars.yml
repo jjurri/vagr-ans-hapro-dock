@@ -1,0 +1,5 @@
+---
+create_containers: 1
+container_name: test1
+container_image: registry.gitlab.com/salamachinas/infra-challenge:latest
+container_command: docker run -d
