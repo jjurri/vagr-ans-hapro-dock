@@ -25,10 +25,10 @@ Vagrant.configure("2") do |config|
     server1.vm.network "private_network", ip: "192.168.111.11"
   end
 
-  config.vm.define "server4" do |server4|
-    server4.vm.box = "ubuntu/focal64"
-    server4.vm.hostname = "server4"
-    server4.vm.network "private_network", ip: "192.168.111.12"
+  config.vm.define "server2" do |server2|
+    server2.vm.box = "ubuntu/focal64"
+    server2.vm.hostname = "server2"
+    server2.vm.network "private_network", ip: "192.168.111.12"
   end
 
   config.vm.define "server3" do |server3|
